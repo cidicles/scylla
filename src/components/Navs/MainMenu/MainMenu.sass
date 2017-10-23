@@ -1,0 +1,183 @@
+@import '../../../vars'
+
+$openHeight: 325px // height of the open mobile menu
+
+header
+  position: absolute
+  z-index: 99
+  width: 100%
+  transition: padding .4s
+  @media screen and (max-width: $break-small)
+    position: absolute
+    z-index: 99
+    width: 100%
+    overflow-x: hidden
+    overflow-y: visible
+    height: 131px
+    text-transform: uppercase
+    &.active
+      padding-top: $openHeight
+
+nav.mainmenu
+  position: relative
+  box-sizing: border-box
+  .toggle-menu
+    position: absolute
+    z-index: 999
+    right: 15px
+    top: 15px
+    display: none
+    cursor: pointer
+    path
+      fill: #fff
+    @media screen and (max-width: $break-small)
+      display: block
+  .logo
+    position: absolute
+    top: .8rem
+    left: 1rem
+    text-align: center
+    margin: 0
+    z-index: 0
+    svg
+      width: 95px
+      path
+        transition: all 1s
+        fill: #fff
+      @for $i from 1 through 18
+        path:nth-child(#{$i})
+          animation: cycle 3s #{$i * .2s} infinite cubic-bezier(0.645, 0.045, 0.355, 1)
+    a
+      position: relative
+      z-index: 10
+    .tt
+      position: relative
+      z-index: 100
+      display: block
+    @media screen and (max-width: 1200px)
+      left: 50%
+      transform: translate(-50%, 0)
+      margin-top: 3px
+  ul
+    padding: .6rem 0
+    margin: 0
+    list-style: none
+    position: relative
+    z-index: 1
+    &.social
+      display: none
+      position: absolute
+      right: .2rem
+      top: -1.5rem
+      @media screen and (max-width: $break-small)
+        top: -$openHeight - 45px
+        right: -.5rem
+        img
+          width: 2rem
+    &.a-left
+      float: left
+      margin-left: 9rem // sized by logo - bad ideas
+      @media screen and (max-width: $break-small)
+        position: absolute
+        margin-left: 0
+        padding-left: 23rem
+        bottom: 95px
+        width: 300px
+        left: 50%
+        transform: translate(-50%, 0)
+        box-sizing: border-box
+        text-align: center
+        padding: 0
+        li
+          float: none
+          text-align: center
+          margin: 0 0 .2rem 0
+          background: none
+          a
+            margin: 0
+            padding: .25rem 0 0 0
+            font-size: 1.65rem
+
+    li
+      float: left
+      font-family: 'DDC Hardware', sans-serif
+      &:last-child
+        background: none
+      a
+        color: #fff
+        font-size: 1rem
+        text-decoration: none
+        padding: .2rem .7rem .1rem .7rem
+        transition: all .6s
+        display: block
+        background: rgba(0,0,0,0)
+        margin: 0 .5rem 0 0
+        box-sizing: border-box
+        &:hover
+          text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9)
+        &.active
+          border: 1px solid rgba(255,255,255,.3)
+          background: rgba(0,0,0,.1)
+
+nav.locmenu
+  ul
+    padding-top: 0
+    margin: 0
+    list-style: none
+    border-radius: 0 0 5px 5px
+    border: none
+    outline: 0
+    overflow: hidden
+    position: absolute
+    right: 0
+    .language
+      background: #292929
+      padding: .2rem
+      border-radius: 0 0 7px 7px
+      select
+        background: #292929
+        color: #fff
+        border: none
+    @media screen and (max-width: $break-small)
+      top: -$openHeight
+      background: #f68b1f
+      width: 100%
+      border-bottom: 2px solid #e47d15
+      .language
+        background: none
+        select
+          margin: .3rem 0 0 .2rem
+          background: #f68b1f
+          border: none
+          color: #fff
+    li
+      font-family: 'DDC Hardware', sans-serif
+      &:first-child
+        background: none
+      &:last-child
+        background: none
+        @media screen and (max-width: $break-small)
+          float: right
+          margin-right: 0
+          margin-top: .2rem
+      a
+        color: #fff
+        font-size: 1.2rem
+        text-decoration: none
+        padding: .2rem 1rem 0 .5rem
+
+@keyframes rotate
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+@keyframes cycle
+  0%
+    fill: #fff
+  25%
+    fill: lighten(#000, 30%)
+  50%
+    fill: lighten(#000, 50%)
+  100%
+    fill: #fff
